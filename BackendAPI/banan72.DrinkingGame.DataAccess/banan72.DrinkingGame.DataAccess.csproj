@@ -1,16 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+      <Folder Include="Entities" />
+      <Folder Include="Repositories" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\banan72.DrinkingGame.Core\banan72.DrinkingGame.Core.csproj" />
-      <ProjectReference Include="..\banan72.DrinkingGame.DataAccess\banan72.DrinkingGame.DataAccess.csproj" />
       <ProjectReference Include="..\banan72.DrinkingGame.Domain\banan72.DrinkingGame.Domain.csproj" />
     </ItemGroup>
 
