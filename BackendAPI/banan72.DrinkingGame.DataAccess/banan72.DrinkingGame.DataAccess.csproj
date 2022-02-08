@@ -5,11 +5,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Entities" />
-      <Folder Include="Repositories" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\banan72.DrinkingGame.Core\banan72.DrinkingGame.Core.csproj" />
       <ProjectReference Include="..\banan72.DrinkingGame.Domain\banan72.DrinkingGame.Domain.csproj" />
     </ItemGroup>
