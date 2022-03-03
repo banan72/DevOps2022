@@ -7,7 +7,7 @@ pipeline {
         stage('Build Api') {
             steps{
                 sh "echo '[API] Building...'"
-                dotnet build BackendAPI/WebApplication.sln
+                dotnet build ./BackendAPI/WebApplication.sln
             }
         }
         stage('Build Frontend') {
