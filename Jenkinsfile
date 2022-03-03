@@ -13,6 +13,8 @@ pipeline {
         stage('Build Frontend') {
             steps{
                 sh "echo '[FRONTEND] Building...'" 
+                sh "cd FrontendHappy"
+                sh "ng build"
             }
         }
     }
