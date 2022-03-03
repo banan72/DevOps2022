@@ -17,9 +17,10 @@ pipeline {
         stage('Build Frontend') {
             steps{
                 sh "echo '[FRONTEND] Building...'" 
-                sh "cd FrontendHappy"
-                sh "npm install"
-                sh "ng build"
+                dir("FrontendHappy"){
+                    sh "npm install"
+                    sh "ng build"
+                }
             }
         }
     }
