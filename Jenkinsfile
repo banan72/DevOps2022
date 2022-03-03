@@ -1,8 +1,12 @@
 pipeline {
     agent any
+
+    tools {nodejs "NodeJS"}
+
     triggers {
         pollSCM "*/5 * * * *"
     }
+
     stages {
         stage('Build Api') {
             steps{
