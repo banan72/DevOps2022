@@ -14,6 +14,7 @@ pipeline {
             steps{
                 sh "echo '[FRONTEND] Building...'" 
                 sh "cd FrontendHappy"
+                sh "npm install"
                 sh "ng build"
             }
         }
