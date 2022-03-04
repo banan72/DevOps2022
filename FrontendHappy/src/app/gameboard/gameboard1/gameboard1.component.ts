@@ -8,10 +8,15 @@ import {Game} from "../game";
 })
 export class Gameboard1Component implements OnInit {
 
+  game:Game = new Game()
+
   constructor() { }
 
   ngOnInit(): void {
-    new Game().Draw()
+    this.game.Draw()
   }
 
+  moveOne() {
+    this.game.moveOne()
+  }
 }
