@@ -14,9 +14,10 @@ export class Gameboard1Component implements OnInit {
 
   ngOnInit(): void {
     this.game.Draw()
+    this.game.setPlayers(4)
   }
 
-  moveOne() {
-    this.game.moveOne()
+  move() {
+    this.game.move(Math.floor(Math.random() * (6 - 1 + 1)) + 1)
   }
 }
