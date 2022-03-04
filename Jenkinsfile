@@ -8,13 +8,13 @@ pipeline {
     }
 
     stages {
-        stage('Build Api') {
+        stage('Building: API') {
             steps{
                 sh "echo '[API] Building...'"
                 sh "dotnet build BackendAPI/WebApplication.sln"
             }
         }
-        stage('Build Frontend') {
+        stage('Building: Frontend') {
             steps{
                 sh "echo '[FRONTEND] Building...'" 
                 dir("FrontendHappy"){
