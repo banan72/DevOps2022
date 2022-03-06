@@ -9,5 +9,6 @@ namespace banan72.DrinkingGame.Core
         bool DeletePlayerById(int id);
         Player CreatePlayer(Player player);
         Player UpdateCustomer(int id, Player player);
+        List<Player> GetTopPlayers(int topPlayers);
     }
 }

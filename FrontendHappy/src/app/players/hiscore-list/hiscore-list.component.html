@@ -1,0 +1,5 @@
+<h1>Hiscore!</h1>
+
+<ul *ngIf="players">
+  <li *ngFor="let player of players">Name: {{player.name}} |  Total Sips: {{player.totalSips}}</li>
+</ul>

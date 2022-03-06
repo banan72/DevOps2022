@@ -7,7 +7,8 @@ import {LoginComponent} from "./login/login.component";
 
 const routes: Routes = [
   {path:'', component:LoginComponent},
-  {path:'game', loadChildren: () => import('./gameboard/gameboard.module').then(m => m.GameboardModule)}
+  {path:'game', loadChildren: () => import('./gameboard/gameboard.module').then(m => m.GameboardModule)},
+  {path:'players', loadChildren: () => import('./players/players.module').then(f => f.PlayersModule)}
 ];
 
 @NgModule({

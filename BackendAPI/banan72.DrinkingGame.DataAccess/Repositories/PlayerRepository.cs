@@ -26,7 +26,8 @@ namespace banan72.DrinkingGame.DataAccess
             {
                 id = pe.id,
                 name = pe.name,
-                isAdmin = pe.isAdmin
+                isAdmin = pe.isAdmin,
+                totalSips = pe.totalSips
             }).ToList();
         }
 
@@ -37,7 +38,8 @@ namespace banan72.DrinkingGame.DataAccess
             {
                 id = pe.id,
                 name = pe.name,
-                isAdmin = pe.isAdmin
+                isAdmin = pe.isAdmin,
+                totalSips = pe.totalSips
             };
         }
 
@@ -55,7 +57,8 @@ namespace banan72.DrinkingGame.DataAccess
             {
                 id = player.id,
                 name = player.name,
-                isAdmin = player.isAdmin
+                isAdmin = player.isAdmin,
+                totalSips = player.totalSips
             };
             _ctx.Player.Add(pe);
             _ctx.SaveChanges();
@@ -63,7 +66,8 @@ namespace banan72.DrinkingGame.DataAccess
             {
                 id = pe.id,
                 name = pe.name,
-                isAdmin = pe.isAdmin
+                isAdmin = pe.isAdmin,
+                totalSips = pe.totalSips
             };
         }
 
@@ -72,13 +76,15 @@ namespace banan72.DrinkingGame.DataAccess
             PlayerEntity pe = _ctx.Player.Find(id);
             pe.name = player.name;
             pe.isAdmin = player.isAdmin;
+            pe.totalSips = player.totalSips;
             PlayerEntity returnEntity = _ctx.Player.Update(pe).Entity;
             _ctx.SaveChanges();
             return new Player
             {
                 id = returnEntity.id,
                 name = returnEntity.name,
-                isAdmin = returnEntity.isAdmin
+                isAdmin = returnEntity.isAdmin,
+                totalSips = pe.totalSips
             };
         }
     }
