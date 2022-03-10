@@ -25,7 +25,7 @@ export class Game {
     for (let y = 0; y < dimension; y++) {
       for (let x = 0; x < dimension; x++) {
         const ctx = canvas.getContext('2d')!
-        let gm = new GameField(i, x, y, size, ctx, offset)
+        let gm = new GameField(i, x, y, size, ctx, offset, "no rule"+i)
         gm.setColor('rgba(169,169,169, 1)')
         this.gameFields.push(gm)
         i++
@@ -61,6 +61,8 @@ export class Game {
       this.gameFields[this.activePlayer.pos ].addNewGamePiece(this.activePlayer)
       this.removeGamePiece(this.activePlayer.id)
     }
+
+    return this.gameFields[this.activePlayer.pos ].rule
   }
 
   removeGamePiece(gpId: number){
@@ -97,7 +99,6 @@ export class Game {
 }
 
 class GameField{
-  gamePieceColors: string[] = ['rgb(0, 255, 255)', 'rgb(255,0,0)', 'rgb(69, 75, 27)', 'rgb(247, 222, 58)']
   id:number
   x: number;
   y: number;
@@ -105,15 +106,17 @@ class GameField{
   offset: number;
   ctx: CanvasRenderingContext2D;
   gamePiecesOnField: GamePiece[]  =[]
+  rule: string;
 
 
-  constructor(id:number, x: number, y: number, size: number, ctx: CanvasRenderingContext2D, offset: number) {
+  constructor(id:number, x: number, y: number, size: number, ctx: CanvasRenderingContext2D, offset: number, rule:string) {
     this.id = id
     this.x = x
     this.y = y
     this.size = size
     this.ctx = ctx;
     this.offset = offset
+    this.rule = rule
   }
 
   addNewGamePiece(gp: GamePiece){

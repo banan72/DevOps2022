@@ -52,7 +52,9 @@ export class Gameboard1Component implements OnInit {
     let dieRoll  = this.game.roll()
     const e = document.getElementById('lblDiceRolled') as HTMLLabelElement;
     e.innerHTML = "you rolled a " + dieRoll
-    this.game.move(dieRoll)
+
+    const l = document.getElementById('lblRule') as HTMLLabelElement;
+    l.innerHTML = "Rule: " + this.game.move(dieRoll)
 
     this.switchDisabledButton()
     }
