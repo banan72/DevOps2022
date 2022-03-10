@@ -16,9 +16,20 @@ export class Gameboard1Component implements OnInit {
 
   ngOnInit(): void {
     this.game.Draw()
-    //this.game.setPlayers(4)
 
-    let players: PlayerModel[]
+    //TODO let users put their own name
+    let players = this.mockPlayers();
+
+
+    const c = document.getElementById('btnNextPlayer') as HTMLButtonElement;
+    c.disabled = true
+
+    const e = document.getElementById('lblCurrentPlayer') as HTMLLabelElement;
+    e.innerHTML = "Current Player " + this.game.setPlayers_fromModel(players)
+
+  }
+
+  private mockPlayers() {
     let player1 = new class implements PlayerModel {
       id: number = 1;
       name: string = "Bob";
@@ -35,16 +46,7 @@ export class Gameboard1Component implements OnInit {
       id: number = 4;
       name: string = "Grethe";
     }
-    players = [player1, player2, player3, player4]
-
-
-
-    const c = document.getElementById('btnNextPlayer') as HTMLButtonElement;
-    c.disabled = true
-
-    const e = document.getElementById('lblCurrentPlayer') as HTMLLabelElement;
-    e.innerHTML = "Current Player " + this.game.setPlayers_fromModel(players)
-
+    return [player1, player2, player3, player4]
   }
 
   nextPlayer() {
