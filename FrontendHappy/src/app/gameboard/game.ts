@@ -1,3 +1,4 @@
+import {PlayerModel} from "./player.model";
 
 export class Game {
   gameFields: GameField[] = []
@@ -36,7 +37,10 @@ export class Game {
   setPlayers(total:number){
     if(total<=this.maxPlayers){
       for(let i = 0; i<total; i++){
-        let gp = new GamePiece(i, this.gamePieceColors[i])
+        let gp = new GamePiece(i, this.gamePieceColors[i], new class implements PlayerModel {
+          id: number = i;
+          name: string = "Spiller" + i;
+        })
         this.activeGamepieces.push(gp)
         this.gameFields[gp.pos].addNewGamePiece(gp)
       }
@@ -46,6 +50,23 @@ export class Game {
     else{
       //TODO error
     }
+  }
+
+  setPlayers_fromModel(players:PlayerModel[]){
+      if(players.length<= this.maxPlayers){
+        for(let i = 0; i<players.length; i++){
+          let gp = new GamePiece(i, this.gamePieceColors[i], players[i])
+          this.activeGamepieces.push(gp)
+          this.gameFields[gp.pos].addNewGamePiece(gp)
+        }
+        this.activePlayer = this.activeGamepieces [this.turn]
+      }
+      else {
+        //Todo Error
+      }
+
+      return this.activePlayer.player.name
+
   }
 
 
@@ -89,7 +110,7 @@ export class Game {
       this.activePlayer = this.activeGamepieces[this.turn]
     }
 
-    return this.activePlayer.id
+    return this.activePlayer.player.name
   }
 
   roll(): number {
@@ -174,9 +195,11 @@ class GamePiece{
   id:number
   pos:number =  0
   color: string
+  player: PlayerModel
 
-  constructor(id: number, color:string) {
+  constructor(id: number, color:string, player: PlayerModel) {
     this.id = id;
     this.color = color;
+    this.player = player
   }
 }
