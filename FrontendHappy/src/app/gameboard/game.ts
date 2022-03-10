@@ -61,8 +61,6 @@ export class Game {
       this.gameFields[this.activePlayer.pos ].addNewGamePiece(this.activePlayer)
       this.removeGamePiece(this.activePlayer.id)
     }
-
-    this.nextPlayer()
   }
 
   removeGamePiece(gpId: number){
@@ -88,8 +86,14 @@ export class Game {
 
       this.activePlayer = this.activeGamepieces[this.turn]
     }
+
+    return this.activePlayer.id
   }
 
+  roll(): number {
+    let dieRoll  = Math.floor(Math.random() * (6 - 1 + 1)) + 1
+    return dieRoll
+  }
 }
 
 class GameField{
