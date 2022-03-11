@@ -22,7 +22,7 @@ pipeline {
 	
 	stage('Back-end tests') {
     		steps{
-    		    dir ("BackendAPI/Core.Test") {
+    		    dir ("BackendAPI/Core.Test/BackendTests") {
     		        sh "dotnet test"
     		    }
     		}
