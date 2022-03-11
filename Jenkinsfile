@@ -13,12 +13,13 @@ pipeline {
                 sh "echo '[API] Building...'"
                 sh "dotnet build BackendAPI/WebApplication.sln"
             }
+            post {
+            		success {
+            		sh "echo 'API built successfully'"
+            		}
+            	}
         }
-	post {
-		success {
-		sh "echo 'API built successfully'"
-		}
-	}
+	
 	stage('Back-end tests') {
 		steps{
 		sh "echo 'this will run tests'"
