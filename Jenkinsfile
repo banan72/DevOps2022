@@ -14,6 +14,14 @@ pipeline {
                 sh "dotnet build BackendAPI/WebApplication.sln"
             }
         }
+	post {
+		success {
+		sh "echo 'API built successfully'"
+		}
+	}
+	stage('Back-end tests') {
+	
+	}
         stage('Building: Frontend') {
             steps{
                 sh "echo '[FRONTEND] Building...'" 
