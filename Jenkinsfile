@@ -21,8 +21,6 @@ pipeline {
         }
 	
 	
-	
-	}
         stage('Building: Frontend') {
             steps{
                 sh "echo '[FRONTEND] Building...'" 
