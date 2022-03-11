@@ -20,7 +20,14 @@ pipeline {
             	}
         }
 	
-	
+	stage('Back-end tests') {
+    		steps{
+    		    dir ("BackendAPI/Core.Test") {
+    		        sh "dotnet test"
+    		    }
+    		}
+    	}
+    	
         stage('Building: Frontend') {
             steps{
                 sh "echo '[FRONTEND] Building...'" 
