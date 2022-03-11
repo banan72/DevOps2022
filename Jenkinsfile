@@ -22,7 +22,9 @@ pipeline {
 	
 	stage('Back-end tests') {
 		steps{
-		sh "echo 'this will run tests'"
+		    dir ("BackendAPI/Core.Test") {
+		        sh "dotnet test"
+		    }
 		}
 	
 	}
