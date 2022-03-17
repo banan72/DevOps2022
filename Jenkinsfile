@@ -41,7 +41,7 @@ pipeline {
         stage('Deliver: Frontend') {
             steps{
                 sh "docker build -f dockerfile -t frontend-docker-image ."
-                sh "docker run --name front-end -d -p 8081:80 frontend-docker-image"
+                sh "sudo docker run --name front-end -d -p 8081:80 frontend-docker-image"
             }
         }
     }
