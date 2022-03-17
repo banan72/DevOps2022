@@ -1,2 +1,2 @@
 FROM nginx
-COPY ./FrontendHappy/dist/ /usr/share/nginx/html
+COPY FrontendHappy/dist/ /usr/share/nginx/html
