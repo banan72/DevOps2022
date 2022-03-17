@@ -46,5 +46,16 @@ pipeline {
                 sh "docker run --name front-end -d -p 8081:80 frontend-docker-image"
             }
         }
+
+        stage('Deliver: Backend'){
+            steps{
+                dir("BackendAPI"){
+                    sh "docker stop back-end"
+                    sh "docker rm -f back-end"
+                    sh "docker build -f dockerfile -t backend-docker-image ."
+                    sh "docker run --name back-end -d -p 8082:81 backend-docker-image"
+                }
+            }
+        }
     }
 }
