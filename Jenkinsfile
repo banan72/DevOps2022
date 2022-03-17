@@ -40,7 +40,7 @@ pipeline {
         
         stage('Deliver: Frontend') {
             steps{
-            
+                sh "docker run --name <NAVN> -d -p 8080:80 <NAVN_2>"
             }
         }
     }
