@@ -40,6 +40,8 @@ pipeline {
         
         stage('Deliver: Frontend') {
             steps{
+                sh "docker stop front-end"
+                sh "docker rm -f front-end"
                 sh "docker build -f dockerfile -t frontend-docker-image ."
                 sh "docker run --name front-end -d -p 8081:80 frontend-docker-image"
             }
