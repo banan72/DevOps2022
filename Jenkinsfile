@@ -37,5 +37,11 @@ pipeline {
                 }
             }
         }
+        
+        stage('Deliver: Frontend') {
+            steps{
+            
+            }
+        }
     }
 }
