@@ -23,9 +23,16 @@ pipeline {
 	stage('Back-end tests') {
     		steps{
     		    dir ("BackendAPI/Core.Test/BackendTests") {
-    		        sh "dotnet test"
+    		        sh "dotnet add package coverlet.collector"
+                    sh "dotnet test --collect:'XPlat Code Coverage'"
     		    }
     		}
+    		post {
+                success {
+                    archiveArtifacts "BackendAPI/Core.Test/TestResults/*/coverage.cobertura.xml"
+                    publishCoverage adapters: [coberturaAdapter(path: 'BackendAPI/Core.Test/*/coverage.cobertura.xml', thresholds: [[failUnhealthy: true, thresholdTarget: 'Conditional', unhealthyThreshold: 80.0, unstableThreshold: 50.0]])], sourceFileResolver: sourceFiles('NEVER_STORE')
+                }
+            }
     	}
     	
         stage('Building: Frontend') {
@@ -61,7 +68,10 @@ pipeline {
         stage('Send Discord notification'){
         steps{
             discordSend description: 'The pipeline from Drunken snakes was run', footer: '', image: '', link: '', result: '', scmWebUrl: '', thumbnail: 'https://cdn.discordapp.com/attachments/938788614006014007/954364061661954118/unnamed.jpg', title: 'Drunken Snake', webhookURL: 'https://discord.com/api/webhooks/954363187942260746/DmugEw1tD8X4u__PLbMAjRsS21Q4RnUo7PPmKzjtc8YN6XEERHUFcz2CMZrWMEPTMfWB'
-                }
             }
+        }
+        
+        stage('Testing'){
+        }
     }
 }
