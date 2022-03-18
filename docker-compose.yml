@@ -3,7 +3,7 @@
 services:
   web:
     build:
-      context: "Web"
+      context: "FrontendHappy"
     container_name: "Frontend-container"
     ports:
       - "8090:80"
@@ -11,7 +11,7 @@ services:
       - "api"
   api:
     build:
-      context: "API"
+      context: "BackendAPI"
     container_name: "Backend-container"
     ports:
       - "8091:80"
