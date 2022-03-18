@@ -65,6 +65,22 @@ pipeline {
             }
         }
         
+        stage("Reset containers"){
+            steps{
+                script{
+                    try{
+                        sh "docker-compose down"
+                    }
+                    finally {}
+                }
+            }
+        }
+        stage("Deploy"){
+            steps{
+                sh "docker-compose up -d"
+            }
+        }
+        
         post{
             always{
                 discordSend description: 'The pipeline from Drunken snakes was run', footer: '', image: '', link: '', result: '', scmWebUrl: '', thumbnail: 'https://cdn.discordapp.com/attachments/938788614006014007/954364061661954118/unnamed.jpg', title: 'Drunken Snake', webhookURL: 'https://discord.com/api/webhooks/954363187942260746/DmugEw1tD8X4u__PLbMAjRsS21Q4RnUo7PPmKzjtc8YN6XEERHUFcz2CMZrWMEPTMfWB'
