@@ -29,8 +29,8 @@ pipeline {
     		}
     		post {
                 success {
-                    archiveArtifacts "BackendAPI/Core.Test/TestResults/*/coverage.cobertura.xml"
-                    publishCoverage adapters: [coberturaAdapter(path: 'BackendAPI/Core.Test/*/coverage.cobertura.xml', thresholds: [[failUnhealthy: true, thresholdTarget: 'Conditional', unhealthyThreshold: 80.0, unstableThreshold: 50.0]])], sourceFileResolver: sourceFiles('NEVER_STORE')
+                    archiveArtifacts "BackendAPI/Core.Test/BackendTests/TestResults/*/coverage.cobertura.xml"
+                    publishCoverage adapters: [coberturaAdapter(path: 'BackendAPI/Core.Test/BackendTests/*/coverage.cobertura.xml', thresholds: [[failUnhealthy: true, thresholdTarget: 'Conditional', unhealthyThreshold: 80.0, unstableThreshold: 50.0]])], sourceFileResolver: sourceFiles('NEVER_STORE')
                 }
             }
     	}
