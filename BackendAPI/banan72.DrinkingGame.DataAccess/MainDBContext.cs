@@ -10,6 +10,7 @@ namespace banan72.DrinkingGame.DataAccess
         }
         
         public virtual DbSet<PlayerEntity> Player { get; set; }
-        
+        public virtual DbSet<RuleEntity> Rule { get; set; }
+
     }
 }

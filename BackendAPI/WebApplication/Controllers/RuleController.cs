@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using banan72.DrinkingGame.Core;
 using WebApplication.Dto;
 using Microsoft.AspNetCore.Mvc;
+using WebApplication.Converters;
 
 namespace WebApplication.Controllers
 {
@@ -11,18 +13,19 @@ namespace WebApplication.Controllers
     {
 
         private readonly IRuleService _ruleService;
+        private readonly RuleDtoConverter _ruleConverter;
         public RuleController(IRuleService ruleService)
         {
             _ruleService = ruleService;
+            _ruleConverter = new RuleDtoConverter();
         }
 
         [HttpGet]
-        public ActionResult<RuleDto> GetAll(int id)
+        public ActionResult<List<RuleDto>> GetAll()
         {
             try
             {
-                var placeholder = new RuleDto();
-                return Ok(placeholder);
+                return Ok(_ruleConverter.Convert(_ruleService.GetAll()));
             }
             catch (Exception e)
             {

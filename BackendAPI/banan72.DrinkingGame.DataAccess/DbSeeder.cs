@@ -48,6 +48,24 @@
                 isAdmin = false,
                 totalSips = 200
             });
+
+
+            _ctx.Rule.Add(new RuleEntity
+            {
+                RuleName = "Drik 2",
+                Category = "basic",
+            });
+            
+            _ctx.Rule.Add(new RuleEntity
+            {
+                RuleName = "Drik 5",
+                Category = "basic",
+            });
+            _ctx.Rule.Add(new RuleEntity
+            {
+                RuleName = "Del 3 ud",
+                Category = "basic",
+            });
             _ctx.SaveChanges();
         }
     }
