@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using banan72.DrinkingGame.Core;
 
 namespace banan72.DrinkingGame.Domain
@@ -35,6 +36,22 @@ namespace banan72.DrinkingGame.Domain
         public Player UpdateCustomer(int id, Player player)
         {
             return _playerRepository.UpdatePlayer(id, player);
+        }
+
+        public List<Player> GetTopPlayers(int topPlayers)
+        {
+            List<Player> SortedList = _playerRepository.FindAll().OrderBy(o => o.totalSips).Reverse().ToList();
+            List<Player> returnList = new List<Player>();
+
+            if (topPlayers >= SortedList.Count)
+                return SortedList;
+            
+            for (int i = 0; i < topPlayers; i++)
+            {
+                returnList.Add(SortedList[i]);
+            }
+
+            return returnList;
         }
     }
 }

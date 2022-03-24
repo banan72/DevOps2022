@@ -46,16 +46,29 @@ namespace WebApplication
                 {
                     options.UseSqlite("Data Source=main.db");
                 });
+
+            services.AddCors(option =>
+            {
+                option.AddPolicy("Dev-cors", policy =>
+                { 
+                    policy
+                        .AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod(); 
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, MainDBContext context)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApplication v1"));
+                new DbSeeder(context).SeedDevelopment();
+                app.UseCors("Dev-cors");
             }
 
             app.UseHttpsRedirection();

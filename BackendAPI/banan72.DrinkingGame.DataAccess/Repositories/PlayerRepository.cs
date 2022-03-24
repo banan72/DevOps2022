@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using banan72.DrinkingGame.Core;
+using banan72.DrinkingGame.DataAccess.Converters;
 using banan72.DrinkingGame.Domain;
 
 namespace banan72.DrinkingGame.DataAccess
@@ -9,6 +10,7 @@ namespace banan72.DrinkingGame.DataAccess
     public class PlayerRepository : IPlayerRepository
     {
         private readonly MainDBContext _ctx;
+        private readonly PlayerEntityConverter _playerConverter;
 
         public PlayerRepository(MainDBContext ctx)
         {
@@ -17,28 +19,21 @@ namespace banan72.DrinkingGame.DataAccess
                 throw new InvalidDataException("Player Repository must have a DBContext");
             }
 
+            _playerConverter = new PlayerEntityConverter();
+            
+
             _ctx = ctx;
         }
 
         public List<Player> FindAll()
         {
-            return _ctx.Player.Select(pe => new Player
-            {
-                id = pe.id,
-                name = pe.name,
-                isAdmin = pe.isAdmin
-            }).ToList();
+            return _ctx.Player.Select(pe => _playerConverter.Convert(pe)).ToList();
         }
 
         public Player FindById(int id)
         {
             PlayerEntity pe = _ctx.Player.Find(id);
-            return new Player
-            {
-                id = pe.id,
-                name = pe.name,
-                isAdmin = pe.isAdmin
-            };
+            return _playerConverter.Convert(pe);
         }
 
         public bool DeleteById(int id)
@@ -51,20 +46,10 @@ namespace banan72.DrinkingGame.DataAccess
 
         public Player CreatePlayer(Player player)
         {
-            var pe = new PlayerEntity
-            {
-                id = player.id,
-                name = player.name,
-                isAdmin = player.isAdmin
-            };
+            var pe = _playerConverter.Convert(player);
             _ctx.Player.Add(pe);
             _ctx.SaveChanges();
-            return new Player
-            {
-                id = pe.id,
-                name = pe.name,
-                isAdmin = pe.isAdmin
-            };
+            return _playerConverter.Convert(pe);
         }
 
         public Player UpdatePlayer(int id, Player player)
@@ -72,14 +57,10 @@ namespace banan72.DrinkingGame.DataAccess
             PlayerEntity pe = _ctx.Player.Find(id);
             pe.name = player.name;
             pe.isAdmin = player.isAdmin;
+            pe.totalSips = player.totalSips;
             PlayerEntity returnEntity = _ctx.Player.Update(pe).Entity;
             _ctx.SaveChanges();
-            return new Player
-            {
-                id = returnEntity.id,
-                name = returnEntity.name,
-                isAdmin = returnEntity.isAdmin
-            };
+            return _playerConverter.Convert(returnEntity);
         }
     }
 }

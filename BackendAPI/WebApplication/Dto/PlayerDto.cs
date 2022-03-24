@@ -1,11 +1,9 @@
-﻿using System;
-
-namespace banan72.DrinkingGame.DataAccess
+﻿namespace WebApplication.Dto
 {
-    public class PlayerEntity
+    public class PlayerDto
     {
         public int id { get; set; }
-        public String name { get; set; }
+        public string name { get; set; }
         public bool isAdmin { get; set; }
         public int totalSips { get; set; }
     }
