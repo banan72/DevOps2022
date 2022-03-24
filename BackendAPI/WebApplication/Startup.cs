@@ -40,6 +40,10 @@ namespace WebApplication
             services.AddScoped<IPlayerRepository, PlayerRepository>();
             services.AddScoped<IPlayerService, PlayerService>();
             
+            //Rule
+            services.AddScoped<IRuleRepository, RuleRepository>();
+            services.AddScoped<IRuleService, RuleService>();
+            
             //Setting up DB info
             services.AddDbContext<MainDBContext>(
                 options =>
