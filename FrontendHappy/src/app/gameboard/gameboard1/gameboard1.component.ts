@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Game} from "../game";
-import {PlayerModel} from "../player.model";
+
 import {newArray} from "@angular/compiler/src/util";
+import {PlayerModel} from "../player.model";
 
 @Component({
   selector: 'app-gameboard1',
