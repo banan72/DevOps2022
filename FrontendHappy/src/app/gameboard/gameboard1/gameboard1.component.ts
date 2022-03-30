@@ -3,6 +3,8 @@ import {Game} from "../game";
 
 import {newArray} from "@angular/compiler/src/util";
 import {PlayerModel} from "../player.model";
+import {RuleService} from "../../rule/shared/RuleService";
+import {RuleDto} from "../../rule/shared/RuleDto";
 
 @Component({
   selector: 'app-gameboard1',
@@ -11,11 +13,24 @@ import {PlayerModel} from "../player.model";
 })
 export class Gameboard1Component implements OnInit {
 
-  game:Game = new Game()
+  rules: RuleDto[] = []
+  game:Game = new Game(this.rules)
 
-  constructor() { }
+  constructor(private _ruleService: RuleService ) {
+
+
+  }
 
   ngOnInit(): void {
+    this._ruleService.getAll()
+      .subscribe(rules => {
+        this.rules = rules;
+        this.rules.push({id : 0, ruleName :"test rule", category : ""} as RuleDto)
+      });
+
+    console.log(this.rules.length)
+    this.game = new Game(this.rules)
+
     this.game.Draw()
 
     //TODO let users put their own name

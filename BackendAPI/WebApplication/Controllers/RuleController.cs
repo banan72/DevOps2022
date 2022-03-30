@@ -39,8 +39,8 @@ namespace WebApplication.Controllers
         {
             var ruleToCreate = new Rule()
             {
-                RuleName = ruleDto.RuleName,
-                Category = ruleDto.Category,
+                RuleName = ruleDto.ruleName,
+                Category = ruleDto.category,
             };
             var ruleCreated =_ruleService.CreateRule(ruleToCreate);
             return Created($"https://localhost/api {ruleCreated.Id}", ruleCreated);
@@ -52,8 +52,8 @@ namespace WebApplication.Controllers
         {
             return Ok(_ruleService.UpdateRule(new Rule()
                 {
-                    RuleName = ruleToUpdate.RuleName,
-                    Category = ruleToUpdate.Category,
+                    RuleName = ruleToUpdate.ruleName,
+                    Category = ruleToUpdate.category,
                 }
             ));
         }
@@ -64,9 +64,9 @@ namespace WebApplication.Controllers
             var rule = _ruleService.DeleteRule(id);
             var dto = new RuleDto
             {
-                Id = rule.Id,
-                RuleName = rule.RuleName,
-                Category = rule.Category,
+                id = rule.Id,
+                ruleName = rule.RuleName,
+                category = rule.Category,
             };
             return Ok(dto);
         }

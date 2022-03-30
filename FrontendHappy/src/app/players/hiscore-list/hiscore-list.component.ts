@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PlayersService} from "../shared/players.service";
 import {PlayerDto} from "../shared/player.dto";
+import {RuleDto} from "../../rule/shared/RuleDto";
 
 @Component({
   selector: 'app-hiscore-list',
@@ -16,6 +17,7 @@ export class HiscoreListComponent implements OnInit {
     this._playerService.getTopX(3)
       .subscribe(players => {
         this.players = players;
+        this.players.push({id:0, name: "John", isAdmin : false, totalSips :40} as PlayerDto)
       });
   }
 

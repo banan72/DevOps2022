@@ -2,8 +2,8 @@
 {
     public class RuleDto
     {
-        public int Id { get; set; }
-        public string RuleName { get; set; }
-        public string Category { get; set; }
+        public int id { get; set; }
+        public string ruleName { get; set; }
+        public string category { get; set; }
     }
 }

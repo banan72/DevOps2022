@@ -1,6 +1,10 @@
 import {PlayerModel} from "./player.model";
+import {RuleDto} from "../rule/shared/RuleDto";
+import {RuleService} from "../rule/shared/RuleService";
 
-export class Game {
+export class Game  {
+
+  rules : RuleDto[] = []
   gameFields: GameField[] = []
   activeGamepieces: GamePiece[] = []
   gamePieceColors: string[] = ['rgb(0, 255, 255)', 'rgb(255,0,0)', 'rgb(69, 75, 27)', 'rgb(247, 222, 58)']
@@ -9,6 +13,9 @@ export class Game {
   activePlayer: GamePiece = this.activeGamepieces[0]
   turn: number = 0
 
+  constructor(_rules : RuleDto[]) {
+    this.rules = _rules
+  }
 
   public Draw(): void {
     const dimension = 6
@@ -17,16 +24,21 @@ export class Game {
     // Create and attach Canvas to the DOM
     const canvas = document.createElement('canvas')
     const canvasSize = (size + offset) * dimension + offset
+
+
     canvas.setAttribute('width', canvasSize.toString())
     canvas.setAttribute('height', canvasSize.toString())
     document.body.appendChild(canvas)
 
+    if(this.rules.length == 0){
+      this.rules.push({id : 0, ruleName :"rules is empty", category : ""} as RuleDto)
+    }
 
     let i = 0
     for (let y = 0; y < dimension; y++) {
       for (let x = 0; x < dimension; x++) {
         const ctx = canvas.getContext('2d')!
-        let gm = new GameField(i, x, y, size, ctx, offset, "no rule"+i)
+        let gm = new GameField(i, x, y, size, ctx, offset, this.rules[0].ruleName)
         gm.setColor('rgba(169,169,169, 1)')
         this.gameFields.push(gm)
         i++
