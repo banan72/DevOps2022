@@ -2,4 +2,6 @@
 
 <ul *ngIf="players">
   <li *ngFor="let player of players">Name: {{player.name}} |  Total Sips: {{player.totalSips}}</li>
+  <br>
+  <li *ngFor="let rule of rules">Rule: {{rule.ruleName}} | Rule ID: {{rule.id}}</li>
 </ul>
