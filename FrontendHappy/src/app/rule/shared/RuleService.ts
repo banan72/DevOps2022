@@ -12,6 +12,6 @@ export class RuleService {
 
   getAll():Observable<RuleDto[]>{
     console.log("GetAll")
-    return this._http.get<RuleDto[]>('https://localhost:5001/api/Rule')
+    return this._http.get<RuleDto[]>('http://185.51.76.42:8091/api/Rule')
   }
 }
