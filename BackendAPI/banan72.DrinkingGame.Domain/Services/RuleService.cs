@@ -39,9 +39,9 @@ namespace banan72.DrinkingGame.Domain
             return _ruleRepo.CreateRule(ruleToCreate);
         }
 
-        public Rule UpdateRule(Rule ruleToUpdate)
+        public Rule UpdateRule(Rule updatedRule, int id)
         {
-            return _ruleRepo.UpdateRule(ruleToUpdate);
+            return _ruleRepo.UpdateRule(updatedRule, id);
         }
     }
 }

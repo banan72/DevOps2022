@@ -13,5 +13,15 @@ namespace banan72.DrinkingGame.DataAccess.Converters
                 Category = entity.Category,
             };
         }
+
+        public RuleEntity Convert(Rule rule)
+        {
+            return new RuleEntity
+            {
+                Id = rule.Id,
+                RuleName = rule.RuleName,
+                Category = rule.Category,
+            };
+        }
     }
 }

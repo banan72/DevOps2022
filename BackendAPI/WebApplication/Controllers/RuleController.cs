@@ -54,7 +54,8 @@ namespace WebApplication.Controllers
                 {
                     RuleName = ruleToUpdate.ruleName,
                     Category = ruleToUpdate.category,
-                }
+                }, 
+                id
             ));
         }
 

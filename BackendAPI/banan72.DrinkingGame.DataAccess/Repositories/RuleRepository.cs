@@ -25,22 +25,34 @@ namespace banan72.DrinkingGame.DataAccess
 
         public Rule GetRule(int ruleId)
         {
-            throw new System.NotImplementedException();
+            RuleEntity re = _ctx.Rule.Find(ruleId);
+            return _rec.Convert(re);
         }
 
         public Rule DeleteRule(int ruleId)
         {
-            throw new System.NotImplementedException();
+            var re = _ctx.Rule.Find(ruleId);
+            _ctx.Rule.Remove(re);
+            _ctx.SaveChanges();
+            return _rec.Convert(re);
         }
 
         public Rule CreateRule(Rule ruleToCreate)
         {
-            throw new System.NotImplementedException();
+            var pe = _rec.Convert(ruleToCreate);
+            _ctx.Rule.Add(pe);
+            _ctx.SaveChanges();
+            return _rec.Convert(pe);
         }
 
-        public Rule UpdateRule(Rule ruleToUpdate)
+        public Rule UpdateRule(Rule updatedRule, int id)
         {
-            throw new System.NotImplementedException();
+            RuleEntity re = _ctx.Rule.Find(id);
+            re.Category = updatedRule.Category;
+            re.RuleName = updatedRule.RuleName;
+            RuleEntity returnEntity = _ctx.Rule.Update(re).Entity;
+            _ctx.SaveChanges();
+            return _rec.Convert(returnEntity);
         }
     }
 }

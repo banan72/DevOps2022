@@ -9,6 +9,6 @@ namespace banan72.DrinkingGame.Domain
         public Rule GetRule(int ruleId);
         public Rule DeleteRule(int ruleId);
         public Rule CreateRule(Rule ruleToCreate);
-        public Rule UpdateRule(Rule ruleToUpdate);
+        public Rule UpdateRule(Rule updatedRule, int id);
     }
     }
