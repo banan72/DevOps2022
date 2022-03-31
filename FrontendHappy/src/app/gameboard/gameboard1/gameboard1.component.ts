@@ -14,7 +14,6 @@ import {RuleDto} from "../../rule/shared/RuleDto";
 export class Gameboard1Component implements OnInit {
 
   rules: RuleDto[] = []
-  game:Game = new Game(this.rules)
 
   constructor(private _ruleService: RuleService ) {
 
@@ -26,12 +25,20 @@ export class Gameboard1Component implements OnInit {
       .subscribe(rules => {
         this.rules = rules;
         this.rules.push({id : 0, ruleName :"test rule", category : ""} as RuleDto)
+        console.log(this.rules.length)
+        let game = new Game(this.rules)
+        game.Draw()
+
+        const b = document.getElementById('btnNextPlayer') as HTMLButtonElement
+        b.addEventListener('click', (e:Event) => this.nextPlayer(game));
+
+        const rollbtn = document.getElementById("btnRoll") as HTMLButtonElement
+        rollbtn.addEventListener('click', (e:Event) => this.roll(game));
+
+        const e = document.getElementById('lblCurrentPlayer') as HTMLLabelElement;
+        e.innerHTML = "Current Player " + game.setPlayers_fromModel(players)
       });
 
-    console.log(this.rules.length)
-    this.game = new Game(this.rules)
-
-    this.game.Draw()
 
     //TODO let users put their own name
     let players = this.mockPlayers();
@@ -40,8 +47,7 @@ export class Gameboard1Component implements OnInit {
     const c = document.getElementById('btnNextPlayer') as HTMLButtonElement;
     c.disabled = true
 
-    const e = document.getElementById('lblCurrentPlayer') as HTMLLabelElement;
-    e.innerHTML = "Current Player " + this.game.setPlayers_fromModel(players)
+
 
   }
 
@@ -65,11 +71,10 @@ export class Gameboard1Component implements OnInit {
     return [player1, player2, player3, player4]
   }
 
-  nextPlayer() {
-    let Player = this.game.nextPlayer()
+  nextPlayer(game:Game) {
+    let Player = game.nextPlayer()
 
     this.switchDisabledButton();
-
     const e = document.getElementById('lblCurrentPlayer') as HTMLLabelElement;
     e.innerHTML = "Current Player: " + Player
   }
@@ -89,13 +94,13 @@ export class Gameboard1Component implements OnInit {
 
   }
 
-  roll() {
-    let dieRoll  = this.game.roll()
+  roll(game: Game) {
+    let dieRoll  = game.roll()
     const e = document.getElementById('lblDiceRolled') as HTMLLabelElement;
     e.innerHTML = "you rolled a " + dieRoll
 
     const l = document.getElementById('lblRule') as HTMLLabelElement;
-    l.innerHTML = "Rule: " + this.game.move(dieRoll)
+    l.innerHTML = "Rule: " + game.move(dieRoll)
 
     this.switchDisabledButton()
     }

@@ -38,13 +38,15 @@ export class Game  {
     for (let y = 0; y < dimension; y++) {
       for (let x = 0; x < dimension; x++) {
         const ctx = canvas.getContext('2d')!
-        let gm = new GameField(i, x, y, size, ctx, offset, this.rules[0].ruleName)
+        let gm = new GameField(i, x, y, size, ctx, offset, this.rules[this.getRandomInt(0,this.rules.length-1)].ruleName)
         gm.setColor('rgba(169,169,169, 1)')
         this.gameFields.push(gm)
         i++
       }
     }
   }
+
+
 
   setPlayers(total:number){
     if(total<=this.maxPlayers){
@@ -128,6 +130,10 @@ export class Game  {
   roll(): number {
     let dieRoll  = Math.floor(Math.random() * (6 - 1 + 1)) + 1
     return dieRoll
+  }
+
+  getRandomInt(min: number, max: number) {
+    return Math.floor(Math.random() * (max - min)) + min;
   }
 }
 
