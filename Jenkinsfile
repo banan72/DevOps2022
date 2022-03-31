@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Building: API') {
         when {
-            anyof {
+            anyOf {
                 changeset "BackendAPI/**"
             }
         }
@@ -27,7 +27,7 @@ pipeline {
 	
 	stage('Back-end tests') {
 	        when {
-                    anyof {
+                    anyOf {
                         changeset "BackendAPI/**"
                     }
                 }
@@ -47,7 +47,7 @@ pipeline {
     	
         stage('Building: Frontend') {
                 when {
-                    anyof {
+                    anyOf {
                         changeset "FrontendHappy/**"
                     }
                 }
