@@ -65,7 +65,6 @@ namespace WebApplication.Controllers
             var rule = _ruleService.DeleteRule(id);
             var dto = new RuleDto
             {
-                id = rule.Id,
                 ruleName = rule.RuleName,
                 category = rule.Category,
             };

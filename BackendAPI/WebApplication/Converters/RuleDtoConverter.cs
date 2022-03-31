@@ -10,7 +10,6 @@ namespace WebApplication.Converters
         {
             return new Rule
             {
-                Id = dto.id,
                 RuleName = dto.ruleName,
                 Category = dto.category
             };
@@ -20,7 +19,6 @@ namespace WebApplication.Converters
         {
             return new RuleDto
             {
-                id = rule.Id,
                 ruleName = rule.RuleName,
                 category = rule.Category
             };
