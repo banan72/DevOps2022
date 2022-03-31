@@ -10,7 +10,7 @@ export class PlayersService {
 
   constructor(private _http: HttpClient) {
   }
-
+ //note fore testing jenkins, ignore this!
   getAll(): Observable<PlayerDto[]>{
     return this._http.get<PlayerDto[]>('https://localhost:5001/api/Player');
   }
