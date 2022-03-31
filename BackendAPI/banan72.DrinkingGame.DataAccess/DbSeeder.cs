@@ -66,6 +66,105 @@
                 RuleName = "Del 3 ud",
                 Category = "basic",
             });
+            _ctx.Rule.Add(new RuleEntity
+            {
+                RuleName = "Pige skål",
+                Category = "basic",
+            });
+            _ctx.Rule.Add(new RuleEntity
+            {
+                RuleName = "Drenge skål",
+                Category = "basic",
+            });
+            _ctx.Rule.Add(new RuleEntity
+            {
+                RuleName = "Giv 3 slurk til højre",
+                Category = "basic",
+            });
+            _ctx.Rule.Add(new RuleEntity
+            {
+                RuleName = "Giv 3 slurk til venstre",
+                Category = "basic",
+            });
+            _ctx.Rule.Add(new RuleEntity
+            {
+                RuleName = "Take a brake",
+                Category = "basic",
+            });
+            _ctx.Rule.Add(new RuleEntity
+            {
+                RuleName = "Vandfald",
+                Category = "basic",
+            });
+            _ctx.Rule.Add(new RuleEntity
+            {
+                RuleName = "Fællesskål",
+                Category = "basic",
+            });
+            _ctx.Rule.Add(new RuleEntity
+            {
+                RuleName = "Giv 2 slurk til alle andre",
+                Category = "basic",
+            });
+            _ctx.Rule.Add(new RuleEntity
+            {
+                RuleName = "BUND en drink",
+                Category = "basic",
+            });
+            _ctx.Rule.Add(new RuleEntity
+            {
+                RuleName = "Plat eller krone (plat = du drikker, krone = alle andre drikker)",
+                Category = "basic",
+            });
+            _ctx.Rule.Add(new RuleEntity
+            {
+                RuleName = "Sandhed eller bund",
+                Category = "Sandhed eller Konsekvens",
+            });
+            _ctx.Rule.Add(new RuleEntity
+            {
+                RuleName = "Sandhed eller shot",
+                Category = "Sandhed eller Konsekvens",
+            });
+            _ctx.Rule.Add(new RuleEntity
+            {
+                RuleName = "Konsekvens eller bund",
+                Category = "Sandhed eller Konsekvens",
+            });
+            _ctx.Rule.Add(new RuleEntity
+            {
+                RuleName = "Konsekvens eller shot",
+                Category = "Sandhed eller Konsekvens",
+            });
+            _ctx.Rule.Add(new RuleEntity
+            {
+                RuleName = "Sandhed eller Konsekvens",
+                Category = "Sandhed eller Konsekvens",
+            });
+            _ctx.Rule.Add(new RuleEntity
+            {
+                RuleName = "Læg noget op på din story eller drik 4",
+                Category = "Social media",
+            });
+            _ctx.Rule.Add(new RuleEntity
+            {
+                RuleName = "Like 5 post fra din crush eller bund",
+                Category = "Social media",
+            });
+            _ctx.Rule.Add(new RuleEntity
+            {
+                RuleName = "Pinligt Facebook opslag fra din sidemakker eller drik 5",
+                Category = "Social media",
+            });
+            _ctx.Rule.Add(new RuleEntity
+            {
+                RuleName = "Slet en Snapchat ven eller drik 3",
+                Category = "Social media",
+            });
+
+
+
+
             _ctx.SaveChanges();
         }
     }
