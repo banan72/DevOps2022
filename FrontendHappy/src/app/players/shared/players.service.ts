@@ -12,9 +12,9 @@ export class PlayersService {
   }
 
   getAll(): Observable<PlayerDto[]>{
-    return this._http.get<PlayerDto[]>('http://185.51.76.42:8091/api/Player');
+    return this._http.get<PlayerDto[]>('https://localhost:5001/api/Player');
   }
   getTopX(id: number): Observable<PlayerDto[]>{
-    return this._http.get<PlayerDto[]>(`http://185.51.76.42:8091/api/Player/GetTopSippers?topPlayers=${id}`);
+    return this._http.get<PlayerDto[]>(`https://localhost:5001/api/Player/GetTopSippers?topPlayers=${id}`);
   }
 }
