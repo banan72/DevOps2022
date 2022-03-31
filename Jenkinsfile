@@ -65,7 +65,7 @@ pipeline {
     post {
         always {
             withCredentials([string(credentialsId: 'DISCORD_WEB_HOOK', variable: 'WEB_HOOK')]) {
-                discordSend description: 'The pipeline from Drunken snakes was run', footer: '', image: '', link: '', result: '', scmWebUrl: '', thumbnail: 'https://cdn.discordapp.com/attachments/938788614006014007/954364061661954118/unnamed.jpg', title: 'Drunken Snake', webhookURL: '${WEB_HOOK}'
+                discordSend description: 'The pipeline from Drunken snakes was run', footer: '', image: '', link: '', result: '', scmWebUrl: '', thumbnail: 'https://cdn.discordapp.com/attachments/938788614006014007/954364061661954118/unnamed.jpg', title: 'Drunken Snake', webhookURL: WEB_HOOK
             }
         }
     }
