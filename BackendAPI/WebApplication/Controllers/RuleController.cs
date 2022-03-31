@@ -21,11 +21,11 @@ namespace WebApplication.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<RuleDto>> GetAll()
+        public ActionResult<List<Rule>> GetAll()
         {
             try
             {
-                return Ok(_ruleConverter.Convert(_ruleService.GetAll()));
+                return Ok(_ruleService.GetAll());
             }
             catch (Exception e)
             {
