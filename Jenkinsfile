@@ -9,6 +9,11 @@ pipeline {
 
     stages {
         stage('Building: API') {
+        when {
+            anyOf {
+                changeset "BackendAPI/**"
+            }
+        }
             steps{
                 sh "echo '[API] Building...'"
                 sh "dotnet build BackendAPI/WebApplication.sln"
@@ -21,6 +26,11 @@ pipeline {
         }
 	
 	stage('Back-end tests') {
+	        when {
+                    anyOf {
+                        changeset "BackendAPI/**"
+                    }
+                }
     		steps{
     		    dir ("BackendAPI/Core.Test/BackendTests") {
     		        sh "dotnet add package coverlet.collector"
@@ -36,6 +46,11 @@ pipeline {
     	}
     	
         stage('Building: Frontend') {
+                when {
+                    anyOf {
+                        changeset "FrontendHappy/**"
+                    }
+                }
             steps{
                 sh "echo '[FRONTEND] Building...'" 
                 dir("FrontendHappy"){
