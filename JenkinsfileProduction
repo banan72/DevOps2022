@@ -1,0 +1,56 @@
+pipeline {
+    agent any
+
+    tools {nodejs "NodeJS"}
+
+    stages {
+        stage('Building: API') {
+        when {
+            anyOf {
+                changeset "BackendAPI/**"
+            }
+        }
+            steps{
+                sh "echo '[API] Building...'"
+                sh "dotnet build BackendAPI/WebApplication.sln"
+            }
+            post {
+            		success {
+            		sh "echo 'API built successfully'"
+            		}
+            	}
+        }
+    	
+        stage('Building: Frontend') {
+                when {
+                    anyOf {
+                        changeset "FrontendHappy/**"
+                    }
+                }
+            steps{
+                sh "echo '[FRONTEND] Building...'" 
+                dir("FrontendHappy"){
+                    sh "npm install"
+                    sh "ng build"
+                }
+            }
+        }
+        
+        stage("Reset containers"){
+            steps{
+                script{
+                    try{
+                        sh "docker-compose down"
+                    }
+                    finally {}
+                }
+            }
+        }
+        
+        stage("Deploy"){
+            steps{
+                sh "docker-compose up -d"
+            }
+        }
+    }
+}
