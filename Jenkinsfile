@@ -9,11 +9,11 @@ pipeline {
 
     stages {
         stage('Building: API') {
-        when {
-            anyOf {
-                changeset "BackendAPI/**"
+            when {
+                anyOf {
+                    changeset "BackendAPI/**"
+                }
             }
-        }
             steps{
                 sh "echo '[API] Building...'"
                 sh "dotnet build --configuration Release BackendAPI/WebApplication.sln"
@@ -44,7 +44,7 @@ pipeline {
                     publishCoverage adapters: [coberturaAdapter(path: 'BackendAPI/Core.Test/BackendTests/*/coverage.cobertura.xml', thresholds: [[failUnhealthy: true, thresholdTarget: 'Conditional', unhealthyThreshold: 80.0, unstableThreshold: 50.0]])], sourceFileResolver: sourceFiles('NEVER_STORE')
                 }
             }
-    	}
+        }
     	
         stage('Building: Frontend') {
                 when {
