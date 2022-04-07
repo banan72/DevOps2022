@@ -68,13 +68,14 @@ namespace WebApplication
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, MainDBContext context)
         {
             new DbSeeder(context).SeedDevelopment();
+            app.UseCors("Dev-cors");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApplication v1"));
                 
-                app.UseCors("Dev-cors");
+                
             }
             
 
