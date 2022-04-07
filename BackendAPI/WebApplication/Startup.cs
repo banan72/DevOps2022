@@ -67,14 +67,16 @@ namespace WebApplication
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, MainDBContext context)
         {
+            new DbSeeder(context).SeedDevelopment();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApplication v1"));
-                new DbSeeder(context).SeedDevelopment();
+                
                 app.UseCors("Dev-cors");
             }
+            
 
             app.UseHttpsRedirection();
 
