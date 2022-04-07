@@ -16,7 +16,7 @@ pipeline {
         }
             steps{
                 sh "echo '[API] Building...'"
-                sh "dotnet build --configuration -- Release BackendAPI/WebApplication.sln"
+                sh "dotnet build --configuration Release BackendAPI/WebApplication.sln"
                 sh "docker-compose --env-file config/Test.env build api"
             }
             post {
