@@ -14,7 +14,12 @@ namespace banan72.DrinkingGame.DataAccess
         private readonly RuleEntityConverter _rec;
         public RuleRepository(MainDBContext ctx)
         {
-            _ctx = ctx ?? throw new InvalidDataException("Player Repository must have a DBContext");
+            _ctx = ctx;
+            if (_ctx == null)
+            {
+                throw new InvalidDataException("Player Repository must have a DBContext");
+            }
+
             _rec = new RuleEntityConverter();
         }
         
