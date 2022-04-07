@@ -78,12 +78,6 @@ pipeline {
                 sh "docker-compose up --env-file config/Test.env -d"
             }
         }
-
-        stage('push image to reg') {
-            steps {
-                sh "docker-compose --env-file config/Test.env push"
-            }
-        }
     }
     post {
         always {
