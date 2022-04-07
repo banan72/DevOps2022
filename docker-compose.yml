@@ -4,7 +4,7 @@ services:
   web:
     build:
       context: "FrontendHappy"
-    image: "localhost:7002/frontend-container:${IMAGE_TAG}"
+    image: "localhost:7002/devops2022_web:${IMAGE_TAG}"
     container_name: "${WEB_CONT_NAME}"
     ports:
       - "${WEB_PORT}:80"
@@ -13,7 +13,7 @@ services:
   api:
     build:
       context: "BackendAPI"
-    image: "localhost:7002/backend-container:${IMAGE_TAG}"
+    image: "localhost:7002/devops2022_api:${IMAGE_TAG}"
     container_name: "${API_CONT_NAME}"
     ports:
       - "${API_PORT}:80"
