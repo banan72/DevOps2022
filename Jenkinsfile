@@ -21,7 +21,7 @@ pipeline {
             }
             post {
             		success {
-            		sh "echo 'API built successfully'"
+            		    sh "echo 'API built successfully'"
             		}
             	}
         }
