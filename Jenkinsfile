@@ -9,15 +9,14 @@ pipeline {
 
     stages {
         stage('Building: API') {
-            when {
-                anyOf {
-                    changeset "BackendAPI/**"
-                }
+        when {
+            anyOf {
+                changeset "BackendAPI/**"
             }
+        }
             steps{
                 sh "echo '[API] Building...'"
-                sh "dotnet build --configuration Release BackendAPI/WebApplication.sln"
-                sh "docker-compose --env-file ./config/Test.env build api"
+                sh "dotnet build BackendAPI/WebApplication.sln"
             }
             post {
             		success {
@@ -26,7 +25,7 @@ pipeline {
             	}
         }
 	
-	    stage('Back-end tests') {
+	stage('Back-end tests') {
 	        when {
                     anyOf {
                         changeset "BackendAPI/**"
@@ -44,7 +43,7 @@ pipeline {
                     publishCoverage adapters: [coberturaAdapter(path: 'BackendAPI/Core.Test/BackendTests/*/coverage.cobertura.xml', thresholds: [[failUnhealthy: true, thresholdTarget: 'Conditional', unhealthyThreshold: 80.0, unstableThreshold: 50.0]])], sourceFileResolver: sourceFiles('NEVER_STORE')
                 }
             }
-        }
+    	}
     	
         stage('Building: Frontend') {
                 when {
@@ -58,7 +57,6 @@ pipeline {
                     sh "npm install"
                     sh "ng build"
                 }
-                sh "docker-compose --env-file ./config/Test.env build web"
             }
         }
         
@@ -66,7 +64,7 @@ pipeline {
             steps{
                 script{
                     try{
-                        sh "docker-compose --env-file ./config/Test.env down"
+                        sh "docker-compose down"
                     }
                     finally {}
                 }
@@ -75,13 +73,7 @@ pipeline {
         
         stage("Deploy"){
             steps{
-                sh "docker-compose up --env-file ./config/Test.env -d"
-            }
-        }
-
-        stage('push image to reg') {
-            steps {
-                sh "docker-compose --env-file ./config/Test.env push"
+                sh "docker-compose up -d"
             }
         }
     }
