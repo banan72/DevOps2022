@@ -5,11 +5,6 @@ pipeline {
 
     stages {
         stage('Building: API') {
-        when {
-            anyOf {
-                changeset "BackendAPI/**"
-            }
-        }
             steps{
                 sh "echo '[API] Building...'"
                 sh "dotnet build BackendAPI/WebApplication.sln"
@@ -22,11 +17,6 @@ pipeline {
         }
     	
         stage('Building: Frontend') {
-                when {
-                    anyOf {
-                        changeset "FrontendHappy/**"
-                    }
-                }
             steps{
                 sh "echo '[FRONTEND] Building...'" 
                 dir("FrontendHappy"){
