@@ -16,8 +16,7 @@ pipeline {
         }
             steps{
                 sh "echo '[API] Building...'"
-                sh "dotnet build --configuration -- Release BackendAPI/WebApplication.sln"
-                sh "docker-compose --env-file config/Test.env build api"
+                sh "dotnet build BackendAPI/WebApplication.sln"
             }
             post {
             		success {
@@ -26,7 +25,7 @@ pipeline {
             	}
         }
 	
-	    stage('Back-end tests') {
+	stage('Back-end tests') {
 	        when {
                     anyOf {
                         changeset "BackendAPI/**"
@@ -58,7 +57,6 @@ pipeline {
                     sh "npm install"
                     sh "ng build"
                 }
-                sh "docker-compose --env-file config/Test.env build web"
             }
         }
         
@@ -66,7 +64,7 @@ pipeline {
             steps{
                 script{
                     try{
-                        sh "docker-compose --env-file config/Test.env down"
+                        sh "docker-compose down"
                     }
                     finally {}
                 }
@@ -75,13 +73,7 @@ pipeline {
         
         stage("Deploy"){
             steps{
-                sh "docker-compose up --env-file config/Test.env -d"
-            }
-        }
-
-        stage('push image to reg') {
-            steps {
-                sh "docker-compose --env-file config/Test.env push"
+                sh "docker-compose up -d"
             }
         }
     }
