@@ -9,11 +9,11 @@ pipeline {
 
     stages {
         stage('Building: API') {
-        when {
+        /* when {
             anyOf {
                 changeset "BackendAPI/**"
             }
-        }
+        } */
             steps{
                 sh "echo '[API] Building...'"
                 sh "dotnet build BackendAPI/WebApplication.sln"
