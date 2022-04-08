@@ -17,6 +17,7 @@ pipeline {
             steps{
                 sh "echo '[API] Building...'"
                 sh "dotnet build BackendAPI/WebApplication.sln"
+                sh "docker-compose build api"
             }
             post {
             		success {
