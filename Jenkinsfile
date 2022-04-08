@@ -58,6 +58,7 @@ pipeline {
                     sh "npm install"
                     sh "ng build"
                 }
+                sh"docker-compose build web"
             }
         }
         
